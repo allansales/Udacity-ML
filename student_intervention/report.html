@@ -11800,7 +11800,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11852,23 +11852,25 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="c1"># Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
 
-<span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1"># Calculate number of features</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;passed&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 
-<span class="c1"># TODO: Calculate passing students</span>
+<span class="c1"># Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
 
-<span class="c1"># TODO: Calculate failing students</span>
+<span class="c1"># Calculate failing students</span>
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">n_students</span><span class="p">,</span> <span class="n">n_passed</span><span class="p">)</span>
 
-<span class="c1"># TODO: Calculate graduation rate</span>
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">n_passed</span><span class="p">,</span> <span class="n">n_students</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1"># Calculate graduation rate</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">n_passed</span><span class="o">/</span><span class="n">n_students</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -11889,10 +11891,10 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 0.67%
+Graduation rate of the class: 67.09%
 </pre>
 </div>
 </div>
@@ -11915,7 +11917,7 @@ Graduation rate of the class: 0.67%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11997,7 +11999,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12068,22 +12070,20 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import any additional functionality you may need here</span>
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="c1"># TODO: Set the number of training points</span>
-<span class="c1">#num_train = train_size*len(X_all)</span>
+<span class="c1"># Set the number of training points</span>
 <span class="n">training_size</span> <span class="o">=</span> <span class="mf">0.76</span>
 
 <span class="c1"># Set the number of testing points</span>
-<span class="c1">#num_test = X_all.shape[0] - num_train</span>
 <span class="n">testing_size</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">training_size</span>
 
-<span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">testing_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Shuffle and split the dataset into the number of training and testing points above</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="n">training_size</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="n">testing_size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -12159,7 +12159,7 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 <p>Naive Bayes: predict Alzheimer's disease from genome - <a href="https://academic.oup.com/jamia/article/18/4/370/732731/The-application-of-naive-Bayes-model-averaging-to">https://academic.oup.com/jamia/article/18/4/370/732731/The-application-of-naive-Bayes-model-averaging-to</a></p>
 <p>2) "What are the strengths of the model; when does it perform well?" and 3) "What are the weaknesses of the model; when does it perform poorly?" will be answered together.</p>
 <p>KNN performs well/poorly depending on the distance function chosen and the number of dimensions in the data (curse of dimensionality). Of course, its performance also depends on the choice of K.</p>
-<p>Naive Bayes presume feature's independence. Then, it will perform poorly when we use high correlated features and perform well, otherwise. Naive Bayes also try to represent the real world problem as a simplest possible model, so, if we are trying to model a more complex problem, this algorithm might perform poorly.</p>
+<p>Naive Bayes presume feature's independence. Then, it will perform poorly when we use high correlated features and perform well otherwise. Naive Bayes also try to represent the real world problem as a simplest possible model, so, if we are trying to model a more complex problem, this algorithm might perform poorly.</p>
 <p>Random Forest, as Decision Trees, performs well when the features are good separators of the dependent variable's instances. As consequence of this, the trees in the forest will tend to grow less and be more general. In case there are no good separators in the dataset, the random forest will tend to perform poorly.</p>
 <p>4) "What makes this model a good candidate for the problem, given what you know about the data?"</p>
 <p>These algorithms were chosen due to the high number of categorical variables. They can deal with any type of variable without problems. Other options like logistic regression, SVM and Artificial Neural Networks (ANN) could be considered but discarded since they have issues when dealing with categorical variables. SVM and ANN can not directly deal with categorical values unless we use dumb variables - using this strategy can greatly increase the number of features in our dataset -, and Logistic Regression has a performance time problem when dealing with a high number of categorical variables. Moreover, Naive Bayes, KNN and Random Forest have another advantage: interpretation power. Interpreting the model can be useful in a problem like this. One can argue that Random Forest does not have such advantage but we can always respond saying that we can use some trees of the forest to interpret the results.</p>
@@ -12187,7 +12187,7 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12260,10 +12260,10 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import the three supervised learning models from sklearn</span>
 <span class="c1"># from sklearn import model_A</span>
 <span class="c1"># from sklearn import model_B</span>
 <span class="c1"># from sklearn import model_C</span>
@@ -12271,12 +12271,12 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 
-<span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;entropy&quot;</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Initialize the three models</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 
-<span class="c1"># TODO: Set up the training set sizes</span>
+<span class="c1"># Set up the training set sizes</span>
 <span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y_train_100</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
@@ -12286,7 +12286,7 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 <span class="n">X_train_300</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
 
-<span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
+<span class="c1"># Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
 <span class="c1"># train_predict(clf, X_train, y_train, X_test, y_test)</span>
 
 <span class="k">print</span> <span class="s2">&quot;KNN&quot;</span>
@@ -12325,67 +12325,67 @@ Algorithms Random Forest, Naive Bayes and KNN might be appropriated for this pro
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>KNN
 Training a KNeighborsClassifier using a training set size of 100. . .
-Trained model in 0.1790 seconds
-Made predictions in 0.0080 seconds.
-F1 score for training set: 0.8235.
-Made predictions in 0.0030 seconds.
-F1 score for test set: 0.6667.
+Trained model in 0.0010 seconds
+Made predictions in 0.0020 seconds.
+F1 score for training set: 0.7972.
+Made predictions in 0.0020 seconds.
+F1 score for test set: 0.7068.
  
 Training a KNeighborsClassifier using a training set size of 200. . .
 Trained model in 0.0010 seconds
-Made predictions in 0.0070 seconds.
-F1 score for training set: 0.8612.
-Made predictions in 0.0030 seconds.
-F1 score for test set: 0.6667.
+Made predictions in 0.0060 seconds.
+F1 score for training set: 0.8571.
+Made predictions in 0.0040 seconds.
+F1 score for test set: 0.7121.
  
 Training a KNeighborsClassifier using a training set size of 300. . .
 Trained model in 0.0020 seconds
-Made predictions in 0.0140 seconds.
-F1 score for training set: 0.8869.
-Made predictions in 0.0070 seconds.
-F1 score for test set: 0.7218.
+Made predictions in 0.0110 seconds.
+F1 score for training set: 0.8722.
+Made predictions in 0.0050 seconds.
+F1 score for test set: 0.7482.
  
  
 Random Forest
 Training a RandomForestClassifier using a training set size of 100. . .
-Trained model in 0.1070 seconds
-Made predictions in 0.0150 seconds.
-F1 score for training set: 1.0000.
+Trained model in 0.0450 seconds
+Made predictions in 0.0020 seconds.
+F1 score for training set: 0.9844.
 Made predictions in 0.0010 seconds.
-F1 score for test set: 0.6774.
+F1 score for test set: 0.7669.
  
 Training a RandomForestClassifier using a training set size of 200. . .
-Trained model in 0.0380 seconds
-Made predictions in 0.0030 seconds.
-F1 score for training set: 0.9886.
+Trained model in 0.0370 seconds
 Made predictions in 0.0020 seconds.
-F1 score for test set: 0.7273.
+F1 score for training set: 0.9924.
+Made predictions in 0.0010 seconds.
+F1 score for test set: 0.7153.
  
 Training a RandomForestClassifier using a training set size of 300. . .
-Trained model in 0.0520 seconds
-Made predictions in 0.0030 seconds.
-F1 score for training set: 0.9951.
+Trained model in 0.0380 seconds
 Made predictions in 0.0020 seconds.
-F1 score for test set: 0.7857.
+F1 score for training set: 0.9976.
+Made predictions in 0.0020 seconds.
+F1 score for test set: 0.7727.
  
  
 Naive Bayes
 Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0020 seconds
+Trained model in 0.0010 seconds
 Made predictions in 0.0010 seconds.
 F1 score for training set: 0.8550.
-Made predictions in 0.0010 seconds.
+Made predictions in 0.0000 seconds.
 F1 score for test set: 0.7481.
  
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0010 seconds
-Made predictions in 0.0010 seconds.
+Trained model in 0.0020 seconds
+Made predictions in 0.0000 seconds.
 F1 score for training set: 0.8321.
 Made predictions in 0.0010 seconds.
 F1 score for test set: 0.7132.
  
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0010 seconds
+Trained model in 0.0030 seconds
 Made predictions in 0.0010 seconds.
 F1 score for training set: 0.8088.
 Made predictions in 0.0000 seconds.
@@ -12426,24 +12426,24 @@ F1 score for test set: 0.7500.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.1790</td>
-<td style="text-align:center">0.0030</td>
-<td style="text-align:center">0.8235</td>
-<td style="text-align:center">0.6667</td>
+<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0020</td>
+<td style="text-align:center">0.7972</td>
+<td style="text-align:center">0.7068</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
 <td style="text-align:center">0.0010</td>
-<td style="text-align:center">0.0030</td>
-<td style="text-align:center">0.8612</td>
-<td style="text-align:center">0.6667</td>
+<td style="text-align:center">0.0040</td>
+<td style="text-align:center">0.8571</td>
+<td style="text-align:center">0.7121</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0140</td>
-<td style="text-align:center">0.0070</td>
-<td style="text-align:center">0.8869</td>
-<td style="text-align:center">0.7218</td>
+<td style="text-align:center">0.0020</td>
+<td style="text-align:center">0.0050</td>
+<td style="text-align:center">0.8722</td>
+<td style="text-align:center">0.7482</td>
 </tr>
 </tbody>
 </table>
@@ -12460,24 +12460,24 @@ F1 score for test set: 0.7500.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.1070</td>
+<td style="text-align:center">0.0450</td>
 <td style="text-align:center">0.0010</td>
-<td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.6774</td>
+<td style="text-align:center">0.9844</td>
+<td style="text-align:center">0.7669</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0380</td>
-<td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.9886</td>
-<td style="text-align:center">0.7273</td>
+<td style="text-align:center">0.0370</td>
+<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.9924</td>
+<td style="text-align:center">0.7153</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0520</td>
+<td style="text-align:center">0.0380</td>
 <td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.9951</td>
-<td style="text-align:center">0.7857</td>
+<td style="text-align:center">0.9976</td>
+<td style="text-align:center">0.7727</td>
 </tr>
 </tbody>
 </table>
@@ -12494,21 +12494,21 @@ F1 score for test set: 0.7500.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0020</td>
 <td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0000</td>
 <td style="text-align:center">0.8550</td>
 <td style="text-align:center">0.7481</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0020</td>
 <td style="text-align:center">0.0010</td>
 <td style="text-align:center">0.8321</td>
 <td style="text-align:center">0.7132</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0030</td>
 <td style="text-align:center">0.0000</td>
 <td style="text-align:center">0.8088</td>
 <td style="text-align:center">0.7500</td>
@@ -12546,7 +12546,7 @@ F1 score for test set: 0.7500.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>I'd chose the Random Forest as the best model generally.</p>
-<p>About the data available and limited resourses: It is known that Naive Bayes works well even when we're working with few amount of data. This can be observed in table 3 by checking that besides we double or triple the number in the training set, Naive Bayes achieved similars F1 scores. The other two algorithms had difficulties with few data to work, obtaining a difference by 7% in performance compared to Naive Bayes.</p>
+<p>About the data available and limited resourses: It is known that Naive Bayes works well even when we're working with few amount of data. This can be observed in table 3 by checking that besides we double or triple the number in the training set, Naive Bayes achieved similars F1 scores. The other two algorithms generally have difficulties with few data to work.</p>
 <p>About cost and performance: It's expected that train a Random Forest be more expensive than the other two algorithms considering this amount of data - with large amounts of data, train a KNN might be as expensive as train a Random Forest, or even more. For these algorithms making a query is not that expensive. And that is shown in these tables. About performance, Random Forest achieves the higher result, and that is, somehow, expected since the Random Forest is a more sophisticated method than the others.</p>
 
 </div>
@@ -12600,26 +12600,26 @@ F1 score for test set: 0.7500.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
 
-<span class="c1"># TODO: Create the parameters list you wish to tune</span>
+<span class="c1"># Create the parameters list you wish to tune</span>
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="s1">&#39;criterion&#39;</span><span class="p">:[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="s1">&#39;entropy&#39;</span><span class="p">]}</span>
 
-<span class="c1"># TODO: Initialize the classifier</span>
+<span class="c1"># Initialize the classifier</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
+<span class="c1"># Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span>
 
-<span class="c1"># TODO: Perform grid search on the classifier using the f1_scorer as the scoring method</span>
+<span class="c1"># Perform grid search on the classifier using the f1_scorer as the scoring method</span>
 <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="n">f1_scorer</span><span class="p">)</span>
 
-<span class="c1"># TODO: Fit the grid search object to the training data and find the optimal parameters</span>
+<span class="c1"># Fit the grid search object to the training data and find the optimal parameters</span>
 <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c1"># Get the estimator</span>
@@ -12640,7 +12640,7 @@ F1 score for test set: 0.7500.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0030 seconds.
+<pre>Made predictions in 0.0020 seconds.
 Tuned model has a training F1 score of 0.9976.
 Made predictions in 0.0020 seconds.
 Tuned model has a testing F1 score of 0.7910.
