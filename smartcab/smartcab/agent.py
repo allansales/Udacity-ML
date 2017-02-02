@@ -56,9 +56,10 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set 'state' as a tuple of relevant data for the agent        
-        state = None
+	state = inputs.values()
+	state.insert(0,waypoint)
 
-        return state
+        return tuple(state)
 
 
     def get_maxQ(self, state):
@@ -95,7 +96,6 @@ class LearningAgent(Agent):
         # Set the agent state and default action
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
-        
         if (~self.learning):
 		    action = random.choice(self.valid_actions)
 
@@ -155,7 +155,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent)
+    agent = env.create_agent(LearningAgent, learning=True)
     
     ##############
     # Follow the driving agent
