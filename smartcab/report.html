@@ -18969,26 +18969,26 @@ $$\epsilon = e^{-at}, \textrm{for } 0 < a < 1$$<ul>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>First of all, we have to remember that a state for our agent is composed of waypoint, light, left and oncoming, in this sequence.</p>
+<p>First of all, we have to remember that a state for our agent is composed of waypoint, light, oncoming and left, in this sequence.</p>
 <p>Examples of optimal policy (structured as state -&gt; optimal action):</p>
 <p>1) ('right', 'green', 'forward', 'right') -&gt; Right.
 2) ('left', 'red', 'left', None) -&gt; None.
 3) ('right', 'red', 'right', 'left') -&gt; Right.</p>
 <p>"For each state that has been recorded from the simulation, is the policy (the action with the highest value) correct for the given state? Are there any states where the policy is different than what would be expected from an optimal policy?"</p>
 <p>There are some states with incorrect policies. I.e.:</p>
+<p>('right', 'red', 'forward', 'right')
+ -- forward : -0.10
+ -- right : 0.01
+ -- None : 0.09
+ -- left : -0.05</p>
+<p>In this situation, the smartcab should turn right but it decided to stand still.</p>
+<p>"Provide an example of a state and all state-action rewards recorded, and explain why it is the correct policy."</p>
 <p>('right', 'red', None, 'forward')
  -- forward : -1.38
  -- right : -0.68
  -- None : 0.46
  -- left : -1.77</p>
-<p>In this situation, the smartcab should turn right but it decided to stand still.</p>
-<p>"Provide an example of a state and all state-action rewards recorded, and explain why it is the correct policy."</p>
-<p>('right', 'green', 'left', 'right')
- -- forward : 0.01
- -- right : 0.12
- -- None : 0.01
- -- left : 0.01</p>
-<p>The light is green and the goal is to turn right. The cars by its left is standing and the car oncoming is going to turn right, than, turn right is possible and is the best decision to make.</p>
+<p>The light is red and the goal is to turn right. There is no car oncoming and the car by its left is going forward, in this case, if the agent turn right, it might cause an accident, then, the correct action is standing (None).</p>
 
 </div>
 </div>
@@ -19020,6 +19020,8 @@ $$\epsilon = e^{-at}, \textrm{for } 0 < a < 1$$<ul>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>Smartcab's: The discount factor multiplies the estimated Q value for the next state-action pair. We have to set gamma as zero because in this problem is not possible to estimate the next state-action pair value before getting in next state - the smartcab's inputs are information about configuration upon the current crossroad.</p>
+<p>Environment's: Smartcab's initial position and goal will probably be are different in each trial.</p>
 
 </div>
 </div>
